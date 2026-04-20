@@ -1,10 +1,9 @@
 README - HAIRCUT AI GENERATOR
 Backend Python Script for Swift Integration
 
-===============================================================================
-OVERVIEW
-===============================================================================
-
+=
+OVERVIEW 
+=
 This Python script generates AI hairstyle previews using Replicate's API.
 It's designed to be used as a backend service for a Swift iOS app.
 
@@ -12,18 +11,17 @@ The Python script can run as:
 1. A Flask REST API (recommended for production)
 2. A standalone GUI (for testing/development)
 
-===============================================================================
+=
 WHAT YOU NEED
-===============================================================================
-
+=
 1. Python 3.8 or higher
 2. Replicate API account (https://replicate.com)
 3. API token from Replicate ($5 free credit)
 4. Required Python packages (see below)
 
-===============================================================================
+=
 QUICK SETUP
-===============================================================================
+=
 
 1. Install Python packages:
    pip install replicate requests flask flask-cors
@@ -34,17 +32,17 @@ QUICK SETUP
 3. Test the script works:
    python FIXED_image_upload.py
 
-===============================================================================
+=
 FILES IN THIS PROJECT
-===============================================================================
+=
 
 FIXED_image_upload.py - GUI version (for testing)
 api_server.py - Flask REST API (for Swift integration)
 .env - Your API token (KEEP SECRET - don't commit to git!)
 
-===============================================================================
+=
 FOR SWIFT INTEGRATION - USE THE REST API
-===============================================================================
+=
 
 STEP 1: Start the Python Flask server
 
@@ -68,9 +66,9 @@ STEP 2: In Swift, make HTTP requests to these endpoints:
    GET /health
    - Checks if server is running
 
-===============================================================================
+=
 API EXAMPLE - HOW SWIFT CALLS PYTHON
-===============================================================================
+=
 
 // Swift code to call the Python API:
 
@@ -98,10 +96,9 @@ request.setValue("multipart/form-data; boundary=\(boundary)",
 
 // Then download image from: http://localhost:5000/api/image/abc123
 
-===============================================================================
+=
 DEPLOYMENT
-===============================================================================
-
+=
 For production, deploy the Flask API to:
 - Heroku
 - Railway
@@ -112,9 +109,9 @@ For production, deploy the Flask API to:
 Then update Swift to use your production URL:
 https://your-app.herokuapp.com instead of http://localhost:5000
 
-===============================================================================
+=
 HOW IT WORKS
-===============================================================================
+=
 
 1. Swift app sends photo + style preferences to Python Flask API
 2. Python receives image and parameters
@@ -124,18 +121,18 @@ HOW IT WORKS
 6. Python returns image_id to Swift
 7. Swift downloads the final image from Python server
 
-===============================================================================
+=
 COSTS
-===============================================================================
+=
 
 Each AI generation costs approximately $0.01 - $0.05
 You get $5 free credit when signing up ($100-500 images)
 
 Gate this feature to "Pro" users only to control costs.
 
-===============================================================================
+=
 IMPORTANT SECURITY NOTES
-===============================================================================
+=
 
 1. NEVER put the API token in your Swift app
    - API keys MUST stay on the server
@@ -149,9 +146,9 @@ IMPORTANT SECURITY NOTES
    - Check if user is "Pro" before generating
    - Don't trust the Swift app to do this check
 
-===============================================================================
+=
 TESTING THE API
-===============================================================================
+=
 
 Test with curl:
 
@@ -169,9 +166,9 @@ curl -X POST http://localhost:5000/api/generate \
   -F "gender=none" \
   -F "user_tier=pro"
 
-===============================================================================
+=
 TROUBLESHOOTING
-===============================================================================
+=
 
 Problem: "Module not found"
 Solution: pip install replicate requests flask flask-cors
@@ -185,18 +182,17 @@ Solution: Make sure Flask server is running (python api_server.py)
 Problem: "Generation failed"
 Solution: Check you have API credits at https://replicate.com/account
 
-===============================================================================
+=
 ARCHITECTURE DIAGRAM
-===============================================================================
+=
 
 Swift iOS App  →  HTTP POST  →  Python Flask API  →  Replicate AI
     (UI)                         (Image Processing)    (AI Generation)
                 ←  JSON/Image ←
 
-===============================================================================
+=
 ENDPOINTS REFERENCE
-===============================================================================
-
+=
 POST /api/generate
     Input: multipart/form-data
         - image: file (required)
@@ -232,9 +228,9 @@ GET /health
             "message": "Haircut AI API is running"
         }
 
-===============================================================================
+=
 DEVELOPMENT WORKFLOW
-===============================================================================
+=
 
 1. Run Python server locally: python api_server.py
 2. Swift app connects to: http://localhost:5000
@@ -242,9 +238,9 @@ DEVELOPMENT WORKFLOW
 4. Get your Mac's IP address: ipconfig getifaddr en0 (Mac)
 5. Swift connects to: http://192.168.1.X:5000
 
-===============================================================================
+=
 CONTACT INFO
-===============================================================================
+=
 
 If you have questions about the Python backend:
 - Check the code comments in api_server.py
@@ -255,9 +251,9 @@ For Replicate API issues:
 - Documentation: https://replicate.com/docs
 - Status: https://status.replicate.com
 
-===============================================================================
+=
 THAT'S IT!
-===============================================================================
+=
 
 You now have everything you need to integrate this Python backend
 with your Swift app. The API is simple REST - just HTTP requests.
