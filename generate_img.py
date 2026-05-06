@@ -66,7 +66,7 @@ NOTE: This program must include an .env file with a REPLICATE_API_TOKEN variable
         else:
             exit()
 
-    prompt += " Keep the background and everything else the same."
+    prompt += " Do not change anything else on the image except for anything I have described. Make sure the background and any other objects in the image remain unchanged."
     print("Final Prompt: " + prompt)
     input("Are you ready to generate the image? (Press Enter to continue or Ctrl + C to exit)")
     generateImage(prompt, imagePath, isDone1, isDone2, isDone3)
@@ -90,6 +90,8 @@ def generateImage(final_prompt, img, isDone1, isDone2, isDone3):
             }
         )
             print("Image generated successfully.")
+            getImage(output)
+        
         except Exception as err:
             print("Error generating image: " + str(err))
             exit()
@@ -110,5 +112,11 @@ def imageUpload(filePath):
     else:
         print("Image uploaded successfully.")
         return filePath
+
+def getImage(imageOutput):
+    with open('hairStyle.jpg', "wb") as myFile:
+        myFile.write(imageOutput.read())
+    print("Image is saved successfully.")
+
     
 main_menu()
